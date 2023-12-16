@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- "type" limita o jeito que o usuário vai inserir o valor no campo, porém continua sendo um texto -->
+    
+    N1: <input id="input_n1" type="number"> <br>
+    N2: <input id="input_n2" type="number"> <br>
+    <button onclick="somar()">Somar</button>
+    <button onclick="subtrair()">Subtrair</button>
+    <button onclick="dividir()">Dividir</button>
+    <button onclick="multiplicar()" >Multiplicar</button>
+    
+</body>
+</html>
+
+<script>
+    // Number("X"): serve para converter o valor "X" em número, mas caso não consiga, retornará "NaN" (Not A Number);
+
+    /*
+        Composição de uma variável:
+
+        var nome_variavel = "valor variável"
+
+        - var: a palavra reservada que indica ao JS que a seguir será definida uma variável que irá armazenar algum valor;
+        - nome_da_funcao: é o identificador da variável, como se fosse um apelido para a informação armazenada;
+        - =: as chaves indicam que iremos atribuir algum valor para essa variável;
+        - "valor variável": é o valor que será atribuido a variável, pode ser texto, número, etc; 
+    */
+
+    function somar() {
+        // ao somar valores, caso seja um texto, ele irá concatenar 
+        var n1 = Number(input_n1.value); // convertendo o valor em número para armazenar na variável
+        var n2 = Number(input_n2.value); // convertendo o valor em número para armazenar na variável
+        var resultado = n1 + n2; // somando os valores NUMÉRICOS das variáveis, então não irá concatenar
+                   
+        input_n1.value = ""; // limpando valor da input depois de criar a variável
+        input_n2.value = ""; // limpando valor da input depois de criar a variável
+
+        alert("A soma de " + n1 + " com " + n2 +" resulta em: " + resultado);
+    }
+
+    function subtrair() {
+        var n1 = Number(input_n1.value); // convertendo para número
+        var n2 = Number(input_n2.value); // convertendo para número
+        var resultado = n1 - n2; // subtraindo valores das variáveis
+        alert("A subtracao de " + n1 + " com " + n2 + " resulta em: " + resultado);
+    }
+
+    function dividir() {
+        var n1 = Number(input_n1.value); // convertendo para número
+        var n2 = Number(input_n2.value); // convertendo para número
+        var resultado = n1 / n2; // dividindo valores das variáveis
+        alert("A divisão de " + n1 + " por " + n2 + " resulta em: " + (resultado) );
+    }
+
+    function multiplicar() {
+        var n1 = Number(input_n1.value); // convertendo para número
+        var n2 = Number(input_n2.value); // convertendo para número
+        var resultado = n1 * n2; // multiplicando valores das variáveis
+        alert("A multiplicação de " + n1 + " por " + n2 + " resulta em: " + (resultado) );
+    }
+
+</script>

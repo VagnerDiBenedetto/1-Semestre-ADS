@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="contar()">S2 Pares</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    function contar() {
+        var contador = 0; // variável de controle
+
+        while (contador <= 100) { // enquanto o contador for menor ou igual a 100
+
+            // verifica se o número é par, validando se o resto da divisão por 2 é igual a 0
+            if (contador % 2 == 0) {
+                div_mensagem.innerHTML += `${contador} <br>`
+            }
+
+            contador += 1; // incrementa o contador em 1 a cada repetição
+        }
+
+        // while (contador <= 100) {
+        //     div_mensagem.innerHTML += `${contador} <br>`
+        //     contador += 2;
+        // }
+    }
+</script>

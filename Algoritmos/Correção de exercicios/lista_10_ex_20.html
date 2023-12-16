@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Quantos depósitos realizou? <input type="text" id="input_quantidade"> <br>
+    Qual o valor do depósito? <input type="text" id="input_valor"> <br>
+    <button onclick="ver()">Ver depósitos</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    function ver() {
+        var quantidadeDepositos = Number(input_quantidade.value);
+        var valorDepositos = Number(input_valor.value);
+
+        var contador = 0;
+
+        while (contador < quantidadeDepositos) {
+            contador += 1;
+            div_mensagem.innerHTML += `${contador}º Mês: R$ ${valorDepositos * contador} <br>`;
+            // pega o valor atual do contador * o valor do depósito a cada repetição
+        }
+        div_mensagem.innerHTML += `Total guardado: R$ ${valorDepositos * contador} <br>`;
+    }
+</script>

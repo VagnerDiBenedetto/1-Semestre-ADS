@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estrutura de Decisão (Else-If)</title>
+</head>
+<body>
+    Temperatura: <input type="text" id="input_temp">
+    <button onclick="analisar()">Analisar</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    /*
+        Solicite uma temperatura ao usuário;
+        Valide essa temperatura onde: 
+        - Caso seja menor que 15, exiba "Muito frio!";
+        - Caso esteja entre 15 e 25, exiba "Temperatura OK";
+        - Caso esteja entre 25 e 50, exiba "Muito calor";
+        EXTRA: caso seja acima 50, exiba "Cuidado! Você vai torrar" 
+    */
+
+    function analisar() {
+        var temperatura = Number(input_temp.value);
+    
+        if (temperatura < 15) div_mensagem.innerHTML = "Muito frio";
+        else if (temperatura <= 25) div_mensagem.innerHTML = "Temperatura OK";
+        else if (temperatura <= 50) div_mensagem.innerHTML =  "Muito calor!";
+        else div_mensagem.innerHTML =  "Cuidado! Você vai torrar";
+
+        // Abaixo realiza as mesmas validações, porém na ordem contrária
+        // if (temperatura > 50) div_mensagem.innerHTML =  "Cuidado! Você vai torrar";
+        // else if (temperatura > 25) div_mensagem.innerHTML =  "Muito calor!";
+        // else if (temperatura > 15) div_mensagem.innerHTML = "Temperatura OK";
+        // else div_mensagem.innerHTML = "Muito frio";
+    }
+
+    /*
+        Solução com if-else/ if-else / if-else
+
+            if (temperatura < 15) {
+                alert("Muito frio!");
+            } else { // >= 15
+                if (temperatura <= 25) {
+                    alert("Temperatura OK");
+                } else { // > 25
+                    if (temperatura <= 50) {
+                        alert ("Muito calor!")
+                    } else { // > 50
+                        alert("Cuidado, você vai torrar")
+                    }
+                }
+            }
+
+
+
+        Solução só com ifs: 
+
+            if (temperatura < 15) {
+                alert("Muito frio")
+            }
+            if (temperatura >= 15) {
+                if (temperatura <= 25) {
+                    alert("Temperatura ok")
+                }
+            }
+            if (temperatura > 25) {
+                alert("Muito calor")
+            }
+
+
+
+        Solução com if-else / if:
+
+            if (temperatura > 25) {
+                div_mensagem.innerHTML = "Muito calor";
+            } else {
+                if (temperatura > 14) {
+                    div_mensagem.innerHTML = "Temperatura OK";
+                } 
+            }
+            if (temperatura < 15) {
+                div_mensagem.innerHTML = "Muito frio";
+            }
+        
+
+
+        Solução com 2 ifs, sobrescrevendo a mensagem:
+    
+            div_mensagem.innerHTML = "Muito frio";
+            if (temperatura >= 15) {
+                div_mensagem.innerHTML = "Temperatura OK";
+            } 
+            if (temperatura > 25) {
+                div_mensagem.innerHTML = "Muito calor";
+            }
+    */
+
+</script>

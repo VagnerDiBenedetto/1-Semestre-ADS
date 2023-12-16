@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ex 7</title>
+  </head>
+  <body>
+    <p>Digite o saldo da conta:</p>
+    <input id="ipt_saldo" />
+    <p>Digite o valor do débito:</p>
+    <input id="ipt_debito" />
+    <button onclick="analisarConta()">Analisar conta</button>
+    <div id="div_mensagem"></div>
+  </body>
+</html>
+<script>
+  function analisarConta() {
+    var saldo = Number(ipt_saldo.value);
+    var debito = Number(ipt_debito.value);
+    var saldoFinal = saldo - debito;
+    if (saldoFinal >= 0) {
+      div_mensagem.innerHTML = `<br> O saldo atual da conta corrente é: ${saldoFinal}`;
+    }
+    if (saldoFinal < 0) {
+      div_mensagem.innerHTML = `<br><br> <b style="color: red;">  O saldo atual da conta corrente é ${saldoFinal} </b>`;
+    }
+  }
+</script>

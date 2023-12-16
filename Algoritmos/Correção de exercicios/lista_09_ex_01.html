@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <button onclick="aumentar()">+</button>
+    <button onclick="reduzir()">-</button> <br>
+    
+    <img id="img_pinguim" style="width: 100px" src="https://cbissn.ibict.br/images/phocagallery/galeria2/thumbs/phoca_thumb_l_image03_grd.png" alt="">
+    
+    <!-- 
+        <div id="div_imagem">
+            <img style="width: 100px" src="https://cbissn.ibict.br/images/phocagallery/galeria2/thumbs/phoca_thumb_l_image03_grd.png" alt="">
+        </div> 
+    -->
+</body>
+</html>
+
+<script>
+    var largura = 100; // cria a variável global, iniciando com o valor 100
+    
+    function aumentar() {
+        largura = largura + 10; // atualiza a variável global
+        exibir(); // invoca a função "exibir"
+    }
+    
+    function reduzir() {
+        largura = largura - 10; // atualiza a variável global
+        exibir(); // invoca a função "exibir"
+    }
+    
+    function exibir () {
+        // altera a propriedade "width", do atributo "style", da tag identificada como "img_pinguim"
+        img_pinguim.style.width = `${largura}px`; // utilizando a variável global para reatribuir a largura da imagem
+        
+        /* 
+            Podemos manipular o innerHTML de uma div, alterando seu conteúdo por uma nova imagem (comentado na parte do HTML)
+
+                div_imagem.innerHTML = `
+                    <img style="width: ${largura}px" src="https://cbissn.ibict.br/images/phocagallery/galeria2/thumbs/phoca_thumb_l_image03_grd.png" alt="">
+                `
+
+            Com isso, sobrescreve a imagem anterior pela mesma imagem com largura diferente, de acordo com o valor da variável global 
+        */
+    }
+</script>

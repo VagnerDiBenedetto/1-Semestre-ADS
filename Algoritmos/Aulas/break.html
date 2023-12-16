@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    Contar até... <input type="text" id="input_numero" />
+    <button onclick="contar()">Iniciar Contagem</button>
+    <div id="div_numeros"></div>
+  </body>
+</html>
+
+<script>
+  function contar() {
+    var numero = Number(input_numero.value);
+    var textoFinal = "";
+    var contador = 0;
+    
+    while (true) { // repete infinitamente, pois a condição é "true"
+      if (contador == numero) { // se o contador atingiu o número determinado
+        alert("Quebrando repetições!"); 
+        break; // quebra as repetições após exibir o alerta "teste";
+      }
+      contador++;
+      textoFinal += `${contador} <br>`;
+    }
+
+    div_numeros.innerHTML = textoFinal;
+  }
+</script>
+<!-- 
+    a lógica criada acima, possui a mesma estrutura que o while abaixo, mas com outro viés de validação: 
+
+        while (contador < numero) {
+            contador++;
+            textoFinal += `${contador} <br>`;
+        }
+
+    repete a execução ENQUANTO o contador for menor que o número, ou seja,
+      QUEBRA A REPETIÇÃO quando o contador atingir o número determinado
+
+-->

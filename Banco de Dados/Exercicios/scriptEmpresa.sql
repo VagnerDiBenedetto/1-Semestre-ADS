@@ -1,0 +1,45 @@
+-- CRIAR O BANCO DE DADOS
+-- TODO COMANDO TERMINA COM ;
+CREATE DATABASE bd1adsc;
+
+-- USAR O BANCO DE DADOS
+USE bd1adsc;
+
+-- CRIANDO A NOSSA TABELA empresa
+CREATE TABLE empresa (
+id int primary key,
+nome varchar(50),
+responsavel varchar(40)
+);
+
+-- DESCREVER A TABELA
+DESCRIBE empresa;
+
+-- EXIBIR OS DADOS DA TABELA
+SELECT * FROM empresa;
+
+-- INSERIR DADOS
+INSERT INTO empresa VALUES
+	(1, 'STEFANINI', 'RAFAEL');
+    
+SELECT * FROM empresa;
+
+-- EXIBIR APENAS O CAMPO NOME
+SELECT nome FROM empresa;
+
+-- EXIBIR APENAS O ID E RESPONSAVEL
+SELECT id, responsavel FROM empresa;
+
+INSERT INTO empresa VALUES
+	(2, 'ACCENTURE', 'DÉBORA'),
+    (3, 'C6', 'VANESSA');
+    
+SELECT * FROM empresa;
+
+-- EXIBIR APENAS A EMPRESA CUJO O NOME É C6
+SELECT * FROM empresa WHERE nome = 'C6';
+
+-- EXIBIR APENAS O RESPONSAVEL DA EMPRESA STEFANINI
+SELECT responsavel FROM empresa WHERE nome = 'STEFANINI';
+
+-- BONS ESTUDOS! 

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação Continuada 1</title>
+  </head>
+  <body>
+    <h1>AC1 - Calculadora de Despesas de Florinda e Chico</h1>
+
+    Quantidade de energia consumida em kWh (apenas números): 
+    <input type="number" id="input_kwh"> <br>
+    
+    Bandeira tarifária da energia ("vermelha", "amarela" ou "verde"): 
+    <input type="text" id="input_bandeira"> <br>
+    
+    Água consumida em litros (apenas números): 
+    <input type="number" id="input_agua"> <br>
+    
+    Quantidade de vazamentos de água na casa (apenas números): 
+    <input type="number" id="input_vazamentos"> <br>
+    
+    Gás consumido em litros (apenas números): 
+    <input type="number" id="input_gas"> <br>
+    
+    Valor base do plano de internet (apenas números): 
+    <input type="number" id="input_internet"> <br>
+    
+    Indicação se há uma linha telefônica vinculada ao plano de internet ("sim" ou "não"):
+    <input type="text" id="input_telefone"> <br><br>
+
+    <button onclick="calcular()">Calcular Despesas Fixas</button> <br>
+
+    <div id="div_mensagem"></div>
+  </body>
+</html>
+
+<script>
+  function calcular() {
+    var kwh = Number(input_kwh.value);
+    var bandeira = input_bandeira.value;
+    var agua = Number(input_agua.value);
+    var vazamentos = Number(input_vazamentos.value);
+    var gas = Number(input_gas.value);
+    var internet = Number(input_internet.value);
+    var telefone = input_telefone.value;
+
+    /*
+      estrutura de decisão composta, onde só passa para a próxima validação se falhou na anterior
+
+      if (bandeira == "verde") {
+        var valor_energia = kwh * 0.75;
+      } else {
+        if (bandeira == "amarela") {
+          var valor_energia = kwh * 0.9;
+        } else {
+          if (bandeira == "vermelha") {
+            var valor_energia = kwh * 1;
+          } else {
+              alert("A bandeira está incorreta!")
+          }
+        }
+      }
+    */
+
+    // estrutura de decisão simples, onde uma validação será realizada logo após a outra
+    if (bandeira == "verde") { var valor_energia = kwh * 0.75; }
+    if (bandeira == "amarela") { var valor_energia = kwh * 0.9; }
+    if (bandeira == "vermelha") { var valor_energia = kwh * 1; } 
+
+    if (kwh <= 50) {
+      valor_energia = valor_energia - (valor_energia * 0.1) 
+    }
+
+    var valor_agua = agua * 3.5;
+    var acrescimo = vazamentos * 10;
+    valor_agua = valor_agua + acrescimo;
+
+    var valor_gas = gas * 2.5;
+
+    if (telefone == "sim") {
+      var valor_internet = internet * 1.25;
+    } else {
+      var valor_internet = internet;
+    }
+
+    var valor_total = valor_internet + valor_gas + valor_agua + valor_energia;
+    
+    div_mensagem.innerHTML = `
+      Com o consumo de ${kwh} kWh na bandeira ${bandeira}, a conta de energia totaliza R$ ${valor_energia}. <br>
+      Com o consumo de ${agua} litros de água contendo ${vazamentos} vazamentos, a conta de água totaliza R$ ${valor_agua}. <br>
+      Com o consumo de ${gas} litros de gás, a conta de gás totaliza R$ ${valor_gas}. <br>
+      Com um valor base de R$ ${internet} no plano de internet , a conta de internet/telefone totaliza R$ ${valor_internet}. <br>
+      Gasto total de despesas mensal: R$ ${valor_total}
+    `;
+
+  }
+</script>

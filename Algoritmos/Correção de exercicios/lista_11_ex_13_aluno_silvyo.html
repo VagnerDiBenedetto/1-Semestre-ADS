@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Indique o resultado:<select id="select_resultado">
+        <option value="venceu">Vitória</option>
+        <option value="empatou">Empate</option>
+        <option value="perdeu">Derrota</option>
+      </select>
+      <button onclick="registrar()">Registrar Jogo</button>
+      Indique qual jogo deseja saber o resultado <input type="number" id="input_jogo" oninput="consultar()">
+      <div id="div_mensagem"></div>
+      <div id="div_mensagem2"></div>
+
+</body>
+</html>
+
+<script>
+    var listaJogos = []
+    
+
+    function registrar(){
+        var resultado = select_resultado.value;
+        listaJogos.push(resultado)
+        var vitoria = 0
+        var empate = 0
+        var derrota = 0
+    
+        
+        for (var i = 0; i < listaJogos.length; i++) {
+            var jogoAtual = listaJogos[i];
+
+            if(listaJogos[i] == "venceu")
+            vitoria++
+            else if(listaJogos[i] == "empatou")
+            empate++
+            else
+            derrota++
+        }
+
+        var pontosVitoria = vitoria * 3
+        var pontosEmpate = empate * 1
+        var pontosTotal = pontosVitoria + pontosEmpate
+
+        div_mensagem.innerHTML = `O time teve: ${vitoria} vitórias, ${empate} empates, ${derrota} derrotas <br><br>
+        
+        Pontuação total: ${pontosTotal} pontos <br><br>
+        
+        Aproveitamento: ${(pontosTotal / (listaJogos.length * 3)) * 100}%`
+        
+        
+    }
+
+    function consultar(){
+        var jogo = Number(input_jogo.value)
+        
+        for (var i = 0; i < listaJogos.length; i++) {
+            var jogoAtual = listaJogos[i];
+
+            if(i + 1 == jogo)
+            div_mensagem2.innerHTML = `No ${jogo}º, o time ${jogoAtual}`
+            
+        }
+
+        if(jogo > i)
+            div_mensagem2.innerHTML = `Não foi cadastrado um ${jogo}º jogo`
+    }
+</script>

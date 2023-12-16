@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista 04 - Exercício 14</title>
+  </head>
+  <body>
+    Nome do Passageiro: <input id="input_nome" /> <br />
+    Distância (KM): <input id="input_km" /> <br />
+    Bandeira: <input type="number" min="1" max="3" id="input_bandeira" /> <br />
+    Horário: <input type="number" min="0" max="23" id="input_horario" /> <br />
+
+    <button onclick="calcular()">Calcular Corrida</button>
+
+    <div id="div_mensagem"></div>
+  </body>
+</html>
+
+<script>
+  function calcular() {
+    var nome = input_nome.value;
+    var km = Number(input_km.value);
+    var bandeira = Number(input_bandeira.value);
+    var horario = Number(input_horario.value);
+
+    div_mensagem.innerHTML = "";
+
+    if (bandeira >= 1) { 
+      if (bandeira <= 3) {
+        if (horario >= 0) {
+          if (horario <= 23) {
+            var valor_nominal = km * 1.25;
+
+            if (bandeira == 1) { // esse if engloba a linha 35 até 47
+              if (horario <= 6) {
+                valor_nominal = valor_nominal * 1.05;
+              }
+              if (horario > 6) { // esse if engloba a linha 39 até 46
+                if (horario <= 12) {
+                  valor_nominal = (valor_nominal * 110) / 100;
+                }
+                if (horario > 12) { 
+                  valor_nominal = valor_nominal + valor_nominal * 0.15;
+                }
+              }
+            }
+
+            if (bandeira == 2) { // esse if engloba a linha 49 até 61
+              if (horario <= 6) { 
+                valor_nominal = valor_nominal * 1.1;
+              }
+              if (horario > 6) { // esse if engloba a linha 53 até 60
+                if (horario <= 12) {
+                  valor_nominal = valor_nominal * 1.2;
+                }
+                if (horario > 12) {
+                  valor_nominal = valor_nominal + valor_nominal * 0.3;
+                }
+              }
+            }
+
+            if (bandeira == 3) { // esse if engloba a linha 63 até 75
+              if (horario <= 6) { 
+                valor_nominal = valor_nominal * 1.15;
+              }
+              if (horario > 6) { // esse if engloba a linha 67 até 74 
+                if (horario <= 12) {
+                  valor_nominal = valor_nominal * 1.3;
+                }
+                if (horario > 12) {
+                  valor_nominal = valor_nominal + valor_nominal * 0.45;
+                }
+              }
+            }
+
+            // após alterar o valor nominal com base na bandeira e no horário, exibe a mensagem
+            div_mensagem.innerHTML = `Olá ${nome} Sua corrida, será na bandeira ${bandeira}, percorrerá ${km} km e o total da corrida será de ${valor_nominal}`;
+          
+          } // chave de fechamento do "if (horario <= 23)"
+        
+        } // chave de fechamento do "if (horario >= 0)"
+      
+      } // chave de fechamento do "if (bandeira <= 3)"
+    
+    } // chave de fechamento do "if (bandeira >= 1) "
+
+    
+    
+    
+    
+
+    // validações extra para cenários que possuem erro
+    if (bandeira > 3) {
+      div_mensagem.innerHTML = `A bandeira ${bandeira} não é válida`;
+    }
+    if (bandeira < 1) {
+      div_mensagem.innerHTML = `A bandeira ${bandeira} não é válida`;
+    }
+    if (horario < 0) {
+      div_mensagem.innerHTML += `<br>O horário está fora do intervalo`;
+    }
+    if (horario > 23) {
+      div_mensagem.innerHTML += `<br>O horário está fora do intervalo`;
+    }
+
+
+  } // chave de fechamento da função
+
+</script>

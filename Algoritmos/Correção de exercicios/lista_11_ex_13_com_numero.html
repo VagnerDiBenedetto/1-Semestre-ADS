@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    Número de jogo: 
+    <input oninput="pesquisar()" type="number" id="input_pesquisa" />
+
+    <hr />
+
+    Indique o resultado:
+    <select id="select_resultado">
+      <option value="3">Vitória</option>
+      <option value="1">Empate</option>
+      <option value="0">Derrota</option>
+    </select>
+    <br />
+    <button onclick="registrar()">Registrar jogo</button>
+    <hr />
+    <h1>Resultados:</h1>
+    <div id="div_resultado"></div>
+  </body>
+</html>
+
+<script>
+  var listaResultados = [];
+
+  var qtdVitorias = 0;
+  var qtdEmpates = 0;
+  var qtdDerrotas = 0;
+
+  function registrar() {
+    var resultado = Number(select_resultado.value);
+
+    listaResultados.push(resultado);
+
+    var totalPontosPossiveis = listaResultados.length * 3; // total de pontos possíveis seria 3 pontos por cada jogo
+
+    // verifica a pontuação para validar se foi vitória, empate ou derrota
+    if (resultado == 3) { 
+      qtdVitorias++;
+    } else if (resultado == 1) {
+      qtdEmpates++;
+    } else {
+      qtdDerrotas++;
+    }
+
+    // total de pontos obtidos pelo jogador, de acordo com as pontuações dos jogos registrados na lista
+    var totalPontos = 0;
+    for (var i = 0; i < listaResultados.length; i++) {
+        totalPontos += listaResultados[i]; // acumula a pontuação atual do índice [i] na variável "totalPontos"
+    }
+
+    var aproveitamento = (totalPontos / totalPontosPossiveis) * 100;
+
+    div_resultado.innerHTML = `
+      O time teve: ${qtdVitorias} vitórias, ${qtdEmpates} empates, ${qtdDerrotas} derrotas <br>
+      Pontuação total: ${totalPontos} pontos <br>
+      Aproveitamento: ${aproveitamento.toFixed(2)}% <br>
+    `;
+  }
+
+
+  
+  function pesquisar() {
+    var pesquisa = input_pesquisa.value;
+
+    if (pesquisa > 0 && pesquisa <= listaResultados.length) {
+        var resultado = listaResultados[pesquisa - 1]; // obtém o resultado pesquisado
+        var mensagem = "";
+        
+        // valida qual a pontuação está armazenado neste índice para exibir a mensagem correspondente
+        if (resultado == 3) { 
+            mensagem = "ganhou";
+        } else if (resultado == 1) {
+            mensagem = "empatou";
+        } else {
+            mensagem = "perdeu";
+        }
+
+      div_resultado.innerHTML = `No <b>${pesquisa}</b>º jogo, o time <b>${mensagem}</b>`;
+    } else {
+      div_resultado.innerHTML = `Não foi cadastrado um ${pesquisa}º jogo`;
+    }
+  }
+</script>

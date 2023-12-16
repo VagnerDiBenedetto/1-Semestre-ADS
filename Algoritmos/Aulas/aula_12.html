@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Mínimo de (pode ser negativo): <input id="input_minimo" type="text"><br>
+    Máximo até: <input id="input_maximo" type="text"><br>
+    <button onclick="contarAte5()">Contar até 5</button>
+    <button onclick="contarAte10()">Contar até 10</button>
+    <button onclick="contarAteMaximo()">Contar até máximo</button>
+    <button onclick="contarCarneirinhos()">Contar 10 carneirinhos</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    function contarAte5() {
+        var contador = 0; // começa em 0
+        
+        div_mensagem.innerHTML = "";
+
+        while (contador < 5) { // enquanto o contador for menor ou igual a 5
+            contador += 1; // incrementa o contador antes de exibir
+
+            div_mensagem.innerHTML += contador + "<br>";
+        }
+
+        div_mensagem.innerHTML += "<br>Fim da contagem!";
+    }
+
+    function contarAte10() {
+        var contador = 1;
+        
+        div_mensagem.innerHTML = "";
+
+        while (contador <= 10) { // enquanto o contador for menor ou igual a 10
+            div_mensagem.innerHTML += contador + "<br>";
+
+            contador += 1; // incrementa o contador depois de exibir
+        }
+
+        div_mensagem.innerHTML += "<br>Fim da contagem!";
+    }
+
+    function contarAteMaximo() {
+        var contador = Number(input_minimo.value);
+        var maximo = Number(input_maximo.value);
+        
+        div_mensagem.innerHTML = "";
+
+        while (contador <= maximo) {
+            div_mensagem.innerHTML += contador + "<br>";
+
+            contador += 1; // incremneta o contador depois de exibir a frase
+        }
+
+        div_mensagem.innerHTML += "<br>Fim das repetições!";
+    }
+
+
+    function contarCarneirinhos () {
+        var contador = 1;
+        while (contador <= 50) {
+            if (contador <= 1) {    
+                div_mensagem.innerHTML += contador + " Carneirinho<br>";
+            } else {
+                div_mensagem.innerHTML += contador + " Carneirinhos<br>";
+            }
+
+            contador += 1; // incrementa o contador depois de exibir a frase
+        }
+    }
+</script>

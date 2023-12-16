@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Nome: <input id="input_nome">
+    <div id="div_mensagem"></div>
+    <!-- <button onclick="contar()">Contar</button> -->
+    <button onclick="alertar()">Alertar</button>
+</body>
+</html>
+
+<script>
+    var contador = 0; // criando a variável GLOBAL "contador", que pode ser acessada a qualquer momento, por qualquer função
+    
+    function alertar() {
+        var nome = input_nome.value; // criando a variável LOCAL "nome"
+
+        contador = contador + 1; // atualiza a variável global com base no valor anterior
+
+        // usa o valor da variável atualizado
+        div_mensagem.innerHTML = `
+            ${nome}, você foi alertado!!  
+            <br>Você recebeu ${contador} vez(es) esse alerta!
+        `; 
+    }
+
+    /*
+        o conceito de variável "local" é quando criamos uma variável dentro de uma função
+        com isso, a variável existe SOMENTE PARA AQUELA FUNÇÃO 
+        caso tentemos invocar essa variável em outra função, retornará um erro, indicando que não existe
+            
+            function a () { var nome = A }
+            
+            function b () { alert(`Olá, ${nome}!`) }    
+                -- daria erro, pois a variável "nome" só existe na função "a"
+
+
+        além disso, as variáveis locais são RECRIADAS sempre que a função for executada
+        ou seja, não dá para preservar um valor anterior, pois a variável será recriada
+
+            function a () { 
+                var numero = 10
+                numero = numero + 10;
+                alert(numero);
+            }   -- nesse caso, a função sempre exibiria "20" no alert, pois recria a variável e incrementa 10 sempre que a função é invocada
+
+        mas nos casos onde PRECISAMOS ARMAZENAR os valores de uma variável entre as chamadas da função
+        usamos o conceito de "VARIÁVEL GLOBAL"
+        
+        as variáveis globais são criadas fora das funções, ficando diretamente na tag "script"
+        assim, quando a página carregar, essa variável será criada e estará disponível para todas as funções existentes
+        
+        deste modo, caso precisemos utilizar o mesmo valor em mais de uma função diferente,
+        ou preservar o valor da variável, podemos utilizar as variáveis globais, como no código acima
+        assim, o seu valor será preservado entre as chamadas das funções, sofrendo alteração somente caso a variável global seja REATRIBUÍDA 
+    */
+
+</script>

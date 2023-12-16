@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Time que você torce: <input id="input_time">
+    <button onclick="falar()">Fale sobre esse time</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    function falar() {
+        var time = input_time.value;
+
+        if (time == "São Paulo") {
+            div_mensagem.innerHTML = `<span style="background-color: black; color: red;">Salve o Tricolor paulista</span>`;
+        } else if (time == "são paulo") {
+            div_mensagem.innerHTML = `<span style="background-color: black; color: red;">Salve o Tricolor paulista</span>`;
+        } else if (time == "corinthians") {
+            div_mensagem.innerHTML = `<span style="background-color: black; color: white;">Salve o Corinthians</span>`;
+        } else if (time == "santos") {
+            div_mensagem.innerHTML = `<span style="background-color: white; color: black">Agora quem dá a bola é o Santos</span>`;
+        } else if (time == "palmeiras") {
+            div_mensagem.innerHTML = `<span style="background-color: green; color: white">Salve o alviverde imponente</span>`;
+        } else {
+            div_mensagem.innerHTML = "Digite um time válido!";
+        }
+
+
+        /*
+            leitura do funcionamento das validações acima:
+
+                primeiro valida se o time é "São Paulo" e se for, exibe uma mensagem
+                se não for "São paulo", valida se o time é "são paulo" e se for, exibe uma mensagem
+                se não for "são paulo", valida se o time é "corinthians" e se for, exibe uma mensagem
+                se não for "corinthians", valida se o time é "santos" e se for, exibe uma mensagem
+                se não for "santos", valida se o time é "palmeiras" e se for, exibe uma mensagem
+                se não for "palmeiras", significa que não é nenhum time válido, pois falhou em todas as validações anteriores
+            
+            para o JS, letras MAIÚSCULAS são diferentes de minúsculas, portanto considera "são paulo" como diferente de "São Paulo"
+            
+            lembre-se que caso uma condição seja "verdadeira", executa o bloco de código e sai da estrutura de decisão, ignorando o restante da estrutura
+        */
+    }
+</script>

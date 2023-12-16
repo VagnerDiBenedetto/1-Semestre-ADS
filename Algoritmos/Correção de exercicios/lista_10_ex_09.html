@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Número: <input type="text" id="input_numero"> <br>
+    Frase: <input type="text" id="input_frase"> <br>
+    <button onclick="papagaio()">Papagaio</button>
+</body>
+</html>
+
+<script>
+    function papagaio () {
+        var numero = Number(input_numero.value);
+        var frase = input_frase.value;
+
+        var contador = 0;
+        var textoFinal = "";
+        
+        // enquanto o contador for menor que o número informado, concatena a frase mais uma vez no texto final 
+        while (contador < numero) {
+            contador += 1; 
+            textoFinal += `${frase} `; 
+        }
+
+        contador = 0; // zera o contador para reiniciar a contagem dos alertas
+
+        // enquanto o contador for menor que o número informado, exibe alertas contendo o texto final 
+        while (contador < numero) {
+            alert(textoFinal);
+            contador += 1;
+        }
+
+        /*
+            exemplo de estruturas de repetição aninhadas
+
+            while (contador <  numero) {
+                var textoFinal = "";
+                var contadorFrase = 0; 
+
+                while (contadorFrase < numero) { 
+                    textoFinal += `${frase} `; 
+                    contadorFrase += 1; 
+                }
+
+                alert(textoFinal); 
+                contador += 1; 
+            }
+        */
+    }
+</script>

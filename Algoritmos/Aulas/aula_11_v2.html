@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Nome: <input id="input_nome">
+    <div id="div_mensagem"></div>
+    <!-- <button onclick="contar()">Contar</button> -->
+    <button onclick="alertar()">Alertar</button>
+</body>
+</html>
+
+<script>
+    var contador = 0; // criando a variável GLOBAL "contador", que pode ser acessada a qualquer momento, por qualquer função
+    
+    function alertar() {
+        var nome = input_nome.value; // criando a variável local "nome"
+
+        if (contador == 0) { // se o contador estiver zerado, adiciona essa primeira mensagem na tela
+            div_mensagem.innerHTML = `${nome}, você foi alertado!!`;
+        }
+
+        contar(); // invoca a função "contar", que atualiza o contador
+
+        // mantém um histórico de quantas vezes o usuário clicou no botão
+        div_mensagem.innerHTML += `<br>Você recebeu ${contador} vez(es) esse alerta!`;
+    }
+
+    function contar() {
+        contador = contador + 1; // atualizando a variável global
+    }
+
+</script>

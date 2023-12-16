@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    Digite um número: <input type="number" id="input_numero">
+    <button onclick="analisar()">Analisar</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+
+    /*
+        "if" significa literalmente "se" em português, uma palavra que normalmente indica alguma condição.
+        Nós a utilizamos no nosso dia-a-dia em situações como: 
+            "SE estiver calor VOU tomar sorvete"
+            "SE chover VOU abrir guarda-chuva"
+            "SE eu tiver dinheiro VOU comprar uma ferrari"
+        Como podemos analisar, o "se" da condição está atrelado à tomada de alguma decisão.
+
+        Utilizando a palavra-chave "if", o JS entende que está definindo uma "estrutura de decisão", 
+        que é uma estrutura de controle para tomada de decisões de acordo com determinadas condições.
+        
+        Composição da estrutura de decisão no JS: 
+            if (condicao) { ...código a ser executado... }
+
+            - if: a palavra reservada que indica ao JS que a seguir será definida uma estrutura de decisão;
+            - (condicao): é a condição de validação, onde CASO A CONDIÇÃO SEJA VERDADEIRA, executa todo o bloco de código delimitado pelas chaves;
+            - {}: as chaves indicam onde nossa estrutura de decisão começa e termina, delimitando o seu conteúdo;
+                  o bloco de código das chaves será executado somente caso a condição seja verdadeira;
+    
+        Ou seja, quando o código for executado, o "if" será lido;
+        Na sequência, realizará o teste da condição, para validar se a condição é VERDADEIRA;
+        Caso a condição seja verdadeira, executará todo o código que estiver dentro das chaves (igual a uma função);
+        Mas caso a condição seja falsa, ignorará todo o bloco de código que está vinculado ao if (delimitado pelas chaves {});
+    
+        Para realizar as validações, temos os operadores RELACIONAIS, que servem para comparar valores 
+        Ao utilizar esses operadores, o resultado sempre será verdadeiro ou falso, como: 
+            +----------+----------------+---------+------------+
+            | operador | descrição      | exemplo | resultado  |
+            +----------+----------------+---------+------------+
+            |    <     | menor que      | 5 < 10  | verdadeiro |
+            |    >     | maior que      | 5 > 10  | falso      |
+            |    <=    | menor ou igual | 5 >= 9  | falso      |
+            |    >=    | maior ou igual | 5 >= 2  | verdadeiro |
+            |    ==    | igual a        | 5 == 5  | verdadeiro |
+            |    !=    | diferente de   | 5 != 2  | verdadeiro |
+            +----------+----------------+---------+------------+
+    */
+        
+    function analisar() {
+        var numero = Number(input_numero.value);
+        div_mensagem.innerHTML = `O número escolhido é: ${numero}`;
+
+        if ( numero >= 50 ) {   // Se o número for maior ou igual a 50, exibe uma mensagem
+            div_mensagem.innerHTML += "<br>Este número é maior ou igual a 50"
+        }
+
+        if ( numero < 50 ) {    // Se o número for menor que 50, exibe outra mensagem
+            div_mensagem.innerHTML += "<br>Este número é menor que 50"
+        }
+           
+        /*
+            Acima, criamos 2 ifs com condições opostas, onde as duas mensagens nunca serão exibidas juntas, 
+            afinal, é impossível que um número seja MAIOR ou IGUAL a 50 e MENOR que 50 ao mesmo tempo,
+            portanto, uma mensagem será exibida e a outra ignorada, como se não existisse no código.
+        */
+    }
+
+</script>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- o ID da select pode ser manipulado com "select_teste.value" para obter o valor da opção selecionada, como uma input -->
+    <select id="select_teste">
+        <option value="1">   Primeira Opção   </option>
+        <option value="dois">   Segunda Opção   </option>
+        <option value="3tres">   Terceira Opção   </option>
+    </select>
+
+    <button id="button_teste" onclick="exibir()">Exibir Valor</button>
+
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    function exibir() {
+        var opcaoSelecionada = select_teste.value; // busca o valor como se fosse uma input
+        
+        div_mensagem.innerHTML = `A opção selecionada é: ${opcaoSelecionada}`; // exibe o VALUE da opção, não o conteúdo exibido para o usuário
+
+        button_teste.style.color = "white"; // muda a cor do texto do botão
+        button_teste.style.backgroundColor = "black"; // muda a cor do fundo do botão
+    }
+</script>

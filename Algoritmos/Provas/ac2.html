@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Chakra: <input type="text" id="input_chakra"> <br>    
+    Quantidade de Clones Desejada: <input type="text" id="input_qtd_clones"> <br>    
+    Clones por Linha: <input type="text" id="input_clones_linha"> <br>    
+    <br>
+    <button onclick="criar()">Criar clones</button>
+    <div id="div_clones"></div>
+
+</body>
+</html>
+
+<script>
+    function criar() {
+        var chakra = Number(input_chakra.value); // entre 20 e 5000
+        var qtdClones = Number(input_qtd_clones.value); // entre 0 250
+        var clonesLinha = Number(input_clones_linha.value); // maior que 0
+
+        var chakraValido = chakra >= 20 && chakra <= 5000;
+        var qtdClonesValido = qtdClones >= 0 && qtdClones <= 250;
+        var clonesLinhaValido = clonesLinha > 0;
+        var entradasValidas = chakraValido && qtdClonesValido && clonesLinhaValido;
+
+        var chakraConsumido = qtdClones * 20;
+        var chakraSuficienteValido = chakra >= chakraConsumido;
+
+        var chakraSobra = chakra - chakraConsumido;
+        var percentualSobra = chakraSobra / chakra * 100;
+
+        var contador = 0;
+
+        if (entradasValidas == true) {
+
+            if (chakraSuficienteValido == true) { 
+
+                while (contador < qtdClones) {
+                    contador += 1;
+
+                    div_clones.innerHTML += `<img style="width: 100px" src="naruto.png" alt="">`;   
+
+                    if (contador % clonesLinha == 0) {
+                        div_clones.innerHTML += `<br>`;
+                    }
+                }
+
+                /*
+                    repetições com validação de quebra de linha sem operador de resto, utilizando 2 contadores
+
+                var contador = 0;
+                var contadorLinhas = 0;
+                while (contador < qtdClones) {
+                    contador += 1;
+                    contadorLinhas += 1;
+                    div_clones.innerHTML += `
+                        <img style="width: 100px" src="naruto.png" alt="">
+                    `;
+                    if (contadorLinhas == clonesLinha) {
+                        contadorLinhas = 0;
+                        div_clones.innerHTML += "<br>"
+                    }
+                }
+                */
+
+
+                div_clones.innerHTML += ` 
+                    <br> <br>
+                    ANÁLISE DA GERAÇÃO DE CLONES <br>
+                    Chakra Inicial: ${chakra}  <br>
+                    Quantidade de Clones: ${qtdClones}  <br>
+                    Sobra de Chakra: ${chakraSobra}  <br>
+                    <br> <br>
+                `;
+
+                if (chakraSobra > 1000 || (qtdClones > 50 && percentualSobra >= 20)) {
+                    div_clones.innerHTML += "PROVAVELMENTE VOCÊ VAI GANHAR";
+                } else if (chakraSobra > 500 || (qtdClones >= 20 && qtdClones <= 50 && percentualSobra >= 10)) { 
+                    div_clones.innerHTML += "A LUTA VAI SER MUITO BOA";
+                } else {
+                    div_clones.innerHTML += "TORÇA PARA O ADVERSÁRIO SER FRAQUINHO";
+                }
+            } else {
+                alert("chakra insuficiente");
+            }
+        } else {
+            alert("ERRO NA ENTRADA DE DADOS – chakra tem que ser entre 20 e 5.000. Quantidade de Clones tem que ser entre 0 e 250. Quantidade de Clones por linha tem que ser maior que 0")
+        }
+    }
+</script>
+

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width. initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="input_frase">
+    <button onclick="exibir()">Exibir</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    function exibir () {
+        var frase = input_frase.value; // obtém o texto digitado na input
+
+        var comprimentoDaFrase = frase.length; // pega a quantidade de caracteres do texto
+
+        div_mensagem.innerHTML = ``; // limpa a div
+
+        // a cada repetição, valida se o contador ainda é menor que o comprimento da frase
+        for (var i = 0; i < comprimentoDaFrase; i++) {
+            var caractereAtual = frase[i]; // acessa o índice [i] da frase, para obter o caractere
+            div_mensagem.innerHTML += `${caractereAtual} <br>`; 
+        } 
+    }
+</script>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    Indique o resultado:<select id="select_resultado">
+
+        <option value="Vitória">Vitória</option>
+        <option value="Empate">Empate</option>
+        <option value="Derrota">Derrota</option>
+
+    </select>
+    <button onclick="registrar()">Registrar Jogo</button>
+
+    <br> <br>
+
+    Indique qual jogo deseja saber o resultado : <input oninput="resultado()" type="text" id="input_resultado">
+
+
+    <br><br>
+
+    <div id="painel">
+
+        <b> O time teve: <br><br>
+
+            Pontuação total: <br><br>
+
+            Aproveitamento: <br><br>
+
+        </b>
+
+    </div>
+
+    <div id="painel2"></div>
+
+</body>
+
+</html>
+<script>
+
+    var ListaResultados = [];
+
+    function registrar() {
+
+        var resultado = select_resultado.value;
+        ListaResultados.push(resultado);
+
+        var qtd_vitoria = 0;
+        var qtd_empate = 0;
+        var qtd_derrotas = 0;
+
+        for (var i = 0; i <= ListaResultados.length; i++) {
+
+            if (ListaResultados[i] == 'Vitória') {
+                qtd_vitoria++
+            }
+            if (ListaResultados[i] == 'Empate') {
+                qtd_empate++
+            }
+            if (ListaResultados[i] == 'Derrota') {
+                qtd_derrotas++
+            }
+
+        }
+
+        var pontuacao = (qtd_vitoria * 3) + (qtd_empate * 1);
+        var Aproveitamento = ((pontuacao) / (ListaResultados.length * 3) * 100)
+
+        painel.innerHTML = `  <b> O time teve: ${qtd_vitoria} vitórias, ${qtd_empate} empates, ${qtd_derrotas} derrotas <br><br> Pontuação total: ${pontuacao} <br><br> Aproveitamento: ${Aproveitamento.toFixed(2)}%<br><br></b>`
+
+    }
+
+    function resultado() {
+
+        var resultado = input_resultado.value;
+        var posição = (ListaResultados.length <= resultado - 1)
+
+        if (posição == true) {
+
+            painel2.innerHTML = `Não foi cadastrado um ${resultado}º jogo `
+
+        }
+        else {
+
+            for (var i = 1; i <= ListaResultados.length; i++) {
+
+                if (resultado == i) {
+
+                    painel2.innerHTML = `No ${resultado}º jogo, o time ${ListaResultados[i - 1]}`
+                }
+            }
+
+        }
+
+
+
+
+    }
+
+
+
+
+</script>

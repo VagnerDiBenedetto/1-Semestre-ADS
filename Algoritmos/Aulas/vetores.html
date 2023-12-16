@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    Fruta: <input type="text" id="input_fruta" /> <br>
+    <button onclick="exibirFrutas()">Exibir Lista Atualizada</button> <br>
+    <button onclick="adicionarFruta()">Adicionar Fruta</button> <br>
+    <button onclick="pesquisarFruta()">Pesquisar</button> <br>
+    <button onclick="analisarMorangos()">Analisar "morango"</button> <br>
+    <div id="div_frutas"></div>
+  </body>
+</html>
+
+<script>
+  // var listaVazia = [];    // colchetes indica a definição de um vetor, que neste caso está vazio
+  
+  
+  var listaFrutas = ["maçã", "banana"];    // vetor que se inicia com 2 elementos de texto, "maçã" e "banana"
+
+
+  function adicionarFruta() {
+    var fruta = input_fruta.value;    // obtém a fruta digitada pelo usuário
+    listaFrutas.push( fruta );    // ".push()" é um método padrão do JS para manipular vetores
+    // é usado para adicionar um novo elemento no final do vetor
+
+    exibirFrutas() // invoca a função "exibirFrutas()" após adicionar uma nova fruta na lista de frutas
+  }
+
+
+
+  function exibirFrutas() {
+    var tamanhoVetor = listaFrutas.length;    // obtém a quantidade de itens do vetor
+
+    // div_frutas.innerHTML = `Lista exibida: ${listaFrutas}`;    // exibe os elementos da lista separados por virgula
+    div_frutas.innerHTML = "<b>Lista exibida:</b> ";
+
+    // percorre o vetor, contando de 0 até o último índice válido
+    for (var i = 0; i < tamanhoVetor; i++) {
+      var frutaAtual = listaFrutas[ i ];    // obtém a fruta existente no índice [i] da lista de frutas
+      div_frutas.innerHTML += `<br>${frutaAtual}`;    // exibe a fruta atual na linha de baixo
+    }
+  }
+
+
+  
+  function analisarMorangos() {
+    var contadorMorangos = 0;    // variável auxiliar para contar quantos morangos existem na lista
+    var posicoesMorango = [];    // variável auxiliar para guardar os índices dos morangos existentes na lista
+
+    var tamanhoVetor = listaFrutas.length;    // obtém a quantidade de itens do vetor
+
+    // percorre o vetor, contando de 0 até o último índice válido
+    for (var i = 0; i < tamanhoVetor; i++) {
+      var frutaAtual = listaFrutas[ i ];    // obtém o elemento existente no índice [i] da lista de frutas
+
+      // se a fruta percorrida no índice atual for "morango"
+      if (frutaAtual.toLowerCase() == "morango") {
+        contadorMorangos++;    // incrementa a contagem de morangos
+        posicoesMorango.push( i );    // pega o contador atual e adiciona na lista de índices dos morangos
+      }
+    }
+
+    // ao final das repetições, exibe a quantidade e os índices de "morango" na lista
+    div_frutas.innerHTML = `
+        <b>Analisando Morangos:</b> <br>
+        Quantidade de Morangos: ${contadorMorangos} <br>
+        Índices dos Morangos: ${posicoesMorango}
+    `;
+    // 'posicoesMorango' é um vetor, então ao ser exibido no texto, traz os elementos do vetor separados por vírgula
+  }
+
+
+  
+  function pesquisarFruta() {
+    var fruta = input_fruta.value;    // obtém a fruta digitada pelo usuário
+    var tamanhoVetor = listaFrutas.length;    // obtém a quantidade de itens do vetor
+
+    div_frutas.innerHTML = `<b>Pesquisando por "${fruta}"</b> <br>`;
+
+    // valida se a fruta pesquisada possui um índice válido na lista
+    if (listaFrutas.indexOf( fruta ) >= 0) {
+      div_frutas.innerHTML += `A lista contém a fruta ${fruta} no índice: ${listaFrutas.indexOf(fruta)}`;
+    } else {
+      div_frutas.innerHTML += `A lista <b>NÃO</b> possui a fruta: ${fruta}`;
+    }
+
+    /*
+      Abaixo, temos a mesma lógica para pesquisar, porém utiliza uma estrutura de repetição para manipular o vetor
+      1. Percorremos a lista manualmente utilizando um for, simulando o uso do ".indexOf() >= 0" com uma variável auxiliar
+      2. Ao encontrar na lista uma fruta que seja igual a que o usuário digitou (if), alteramos a variável auxiliar para "true" e quebramos as repetições (break)
+      3. Ao final das repetições, validamos se a variável auxiliar é "true", indicando que em alguma repetição encontrou uma fruta igual a que o usuário digitou
+
+
+      var frutaExiste = false;
+      for (var i = 0; i < tamanhoVetor; i++) {
+          var frutaAtual = listaFrutas[i];
+          if (frutaAtual == fruta) {
+              frutaExiste = true;
+              break;
+          }
+      }
+
+      if (frutaExiste) {
+        div_frutas.innerHTML = `A lista contém a fruta ${fruta} no índice: ${listaFrutas.indexOf(fruta)}`;
+      } else {
+        div_frutas.innerHTML = `A lista <b>NÃO</b> possui a fruta: ${fruta}`;
+      }
+    */
+  }
+</script>

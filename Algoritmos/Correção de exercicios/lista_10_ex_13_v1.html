@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    Quantos dias você faz musculação? <input type="text" id="input_dias" />
+    <button onclick="exibir()">Exibir rotina mensal</button>
+    <div id="div_mensagem"></div>
+  </body>
+</html>
+
+<script>
+  function exibir() {
+    var dias = Number(input_dias.value);
+    var contador = 0; // inicia o contador em 0 - é múltiplo de todos os números
+
+    div_mensagem.innerHTML = ""; // limpa a div antes das repetições
+
+    while (contador < 30) { // valida se o contador ainda não chegou em 30 (de 0 a 29 possuem 30 repetições)
+
+      if (contador % dias == 0) { // valida se o contador atual é múltiplo do número de dias informado pelo usuário
+
+        contador += 1; // incrementa o contador para a próxima repetição ANTES DE EXIBIR a mensagem atual
+        div_mensagem.innerHTML += `Dia ${contador} - Musculação <br>`;
+
+      } else {
+
+        contador += 1; // incrementa o contador para a próxima repetição ANTES DE EXIBIR a mensagem atual
+        div_mensagem.innerHTML += `Dia ${contador} - Comer, dormir, etc. <br>`;
+
+      }
+
+    }
+  }
+</script>

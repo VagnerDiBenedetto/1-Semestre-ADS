@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    Pesquisar jogo de número:
+    <input oninput="pesquisar()" type="number" id="input_pesquisa" />
+
+    <hr />
+
+    Indique o resultado:
+    <select id="select_resultado">
+      <option value="ganhou">Vitória</option>
+      <option value="empatou">Empate</option>
+      <option value="perdeu">Derrota</option>
+    </select>
+    <br />
+    <button onclick="registrar()">Registrar jogo</button>
+    <hr />
+    <h1>Resultados:</h1>
+    <div id="div_resultado"></div>
+  </body>
+</html>
+
+<script>
+  var listaResultados = [];
+
+  var qtdEmpates = 0;
+  var qtdDerrotas = 0;
+  var qtdVitorias = 0;
+
+  // total de pontos obtidos pelo jogador, de acordo com as pontuações dos jogos registrados na lista
+  var totalPontos = 0;
+
+  function registrar() {
+    var resultado = select_resultado.value;
+
+    listaResultados.push(resultado);
+
+    var totalPontosPossiveis = listaResultados.length * 3;
+
+    // verifica o resultado para contabilizar se foi "vitória", "empate" ou "derrota" e somar a pontuação
+    if (resultado == "ganhou") {
+      totalPontos += 3;
+      qtdVitorias++;
+    } else if (resultado == "empatou") {
+      totalPontos += 1;
+      qtdEmpates++;
+    } else {
+      qtdDerrotas++;
+    }
+
+    var aproveitamento = (totalPontos / totalPontosPossiveis) * 100;
+
+    div_resultado.innerHTML = `
+      O time teve: ${qtdVitorias} vitórias, ${qtdEmpates} empates, ${qtdDerrotas} derrotas <br>
+      Pontuação total: ${totalPontos} pontos <br>
+      Aproveitamento: ${aproveitamento.toFixed(2)}% <br>
+    `;
+  }
+
+  
+
+  function pesquisar() {
+    var numeroPesquisa = Number(input_numeroPesquisa.value);
+
+    if (numeroPesquisa <= 0) {
+      div_resultado.innerHTML = `Pesquise com um número válido, sendo  1 ou mais!`;
+    } else if (numeroPesquisa > listaResultados.length) {
+      div_resultado.innerHTML = `Não foi cadastrado um ${numeroPesquisa}º jogo`;
+    } else {
+      div_resultado.innerHTML = `No <b>${numeroPesquisa}º</b> jogo, o time <b>${listaResultados[numeroPesquisa - 1]}</b>`; 
+      // calcular com "-1" o primeiro jogo para acessar o índice "0" caso o usuário insira "1" para obter
+    }
+  }
+</script>

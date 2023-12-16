@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Salário: <input id="input_salario"> <br>
+    <button onclick="confirmar()">Confirmar salário</button> <br>
+    <button onclick="pagar100()">Pagar conta de 100</button> <br>
+    <button onclick="pagar500()">Pagar conta de 500</button> <br>
+    <button onclick="ganhar()">Ganhar na loteria</button> <br>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    // var salario = Number(input_salario.value); -- NÃO FUNCIONA, POIS O USUÁRIO NÃO INTERAGIU COM A INPUT! 
+    var salario = 0;
+
+    function alertarLimite() {
+        alert("Não há dinheiro suficiente para realizar o pagamento!"); 
+    }
+
+    function atualizar () {
+        div_mensagem.innerHTML = `Grana atual: R$${salario}`;
+    }
+
+    function confirmar() {
+        salario = Number(input_salario.value);
+        atualizar();
+    }
+    
+    function pagar100() {
+        if (salario >= 100) {
+            salario -= 100;
+            atualizar();
+        } else {
+            alertarLimite();
+        }
+    }
+    
+    function pagar500() {
+        if (salario >= 500) {
+            salario -= 500;
+            atualizar();
+        } else {
+            alertarLimite();
+        }
+    }
+    
+    function ganhar() {
+        salario += 2000;
+        atualizar();
+    }
+</script>

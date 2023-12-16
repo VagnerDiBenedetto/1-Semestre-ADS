@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Quantas xícaras de café com leite já tomou? 
+    <input id="input_quantidade_xicaras">
+    <button onclick="ver_fixa()">Ver quantidade fixa (2)</button> <br>
+    
+    Quantas colheres de café usa em cada xícara?
+    <input id="input_quantidade_colher">
+    <button onclick="ver_dinamica()">Ver quantidade dinâmica</button>
+    
+    <div id="div_imagens"></div>
+</body>
+</html>
+
+<script>
+    function ver_fixa() {
+        var quantidadeXicaras = Number(input_quantidade_xicaras.value);
+        var contador = 0;
+        
+        div_imagens.innerHTML = ""; // limpa a div
+        
+        while (contador < quantidadeXicaras) {
+            contador += 1;
+            var contadorCafe = 0;
+            
+            div_imagens.innerHTML += `
+                <img style="width: 150px" src="https://img.freepik.com/fotos-premium/cafe-em-po-na-colher-de-madeira-em-branco_253984-1697.jpg" alt="">
+                <img style="width: 150px" src="https://img.freepik.com/fotos-premium/cafe-em-po-na-colher-de-madeira-em-branco_253984-1697.jpg" alt="">
+                <img style="width: 150px" src="https://bolosparavender.com.br/wp-content/uploads/2020/08/fazer-bolo-com-leite-em-po-da-certo-como-fazer.jpg" alt="">
+            `;
+        }
+    }
+
+    function ver_dinamica () {
+        var quantidadeXicaras = Number(input_quantidade_xicaras.value);
+        var quantidadeCafePorXicara = Number(input_quantidade_colher.value);
+
+        var contador = 0;
+        var contadorCafe = 0;
+
+        var imagens = "";
+
+        while (contador < quantidadeXicaras) {
+            contador += 1;
+
+            while (contadorCafe < quantidadeCafePorXicara) {
+                imagens += `
+                    <img style="width: 150px" src="https://img.freepik.com/fotos-premium/cafe-em-po-na-colher-de-madeira-em-branco_253984-1697.jpg" alt="">
+                `;
+                contadorCafe += 1;
+            }
+
+            contadorCafe = 0;
+
+            imagens += `
+                <img style="width: 150px" src="https://bolosparavender.com.br/wp-content/uploads/2020/08/fazer-bolo-com-leite-em-po-da-certo-como-fazer.jpg" alt="">
+            `;
+        }
+
+        div_imagens.innerHTML = imagens;
+    }
+</script>

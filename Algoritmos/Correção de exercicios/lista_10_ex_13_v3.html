@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    Quantos dias você faz musculação? <input type="text" id="input_dias" />
+    <button onclick="exibir()">Exibir rotina mensal</button>
+    <div id="div_mensagem"></div>
+  </body>
+</html>
+
+<script>
+  function exibir() {
+    var dias = Number(input_dias.value);
+    var contador = 1; // inicia o contador em 1
+
+    div_mensagem.innerHTML = ""; // limpa a div antes das repetições
+
+    while (contador <= 30) { // valida se o contador não chegou em 31 (de 1 até 31 possuem 30 repetições)
+
+        if ((contador - 1) % dias == 0) { // valida se o "contador atual - 1" é múltiplo do número de dias informado pelo usuário
+        div_mensagem.innerHTML += `Dia ${contador} - Musculação <br>`;
+      } else {
+        div_mensagem.innerHTML += `Dia ${contador} - Comer, dormir, etc. <br>`;
+      }
+      
+      contador += 1; // incrementa o contador para a próxima repetição DEPOIS DE EXIBIR a mensagem atual
+    }
+  }
+
+  /*
+    o programa deve exibir "Musculação" logo na primeira repetição, mas nosso contador começou em 1,
+    portanto, precisamos verificar se o "contador - 1" é múltiplo dos dias informados pelo usuário, 
+    porque na primeira repetição ele irá validar "0 % dias == 0" ao invés de "1 % dias == 0"
+    e como 0 é múltiplo de todos os números, exibe "Musculação na primeira repetição", 
+    tornando todas as validações de resto corretas, com base no número de dias informado
+  */
+
+</script>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    Quantidade de Elefantes: <input type="text" id="input_quantidade" />
+    <button onclick="atazanar_v1()">Atazanar Médium 1</button>
+    <button onclick="atazanar_v2()">Atazanar Médium 2</button>
+    <button onclick="atazanar_v3()">Atazanar Médium 3</button>
+    <div id="div_mensagem"></div>
+  </body>
+</html>
+
+<script>
+  function atazanar_v1() {
+    div_mensagem.innerHTML = ""; // limpa a div
+
+    var quantidadeElefantes = Number(input_quantidade.value);
+    var fraseIncomodam = "incomodam, "; // inicia variável auxiliar para texto dinâmico
+    var contador = 1; // contador começa em 1, então incrementa antes
+
+    while (contador < quantidadeElefantes) {
+      contador += 1; // incrementa o contador antes da mensagem, pois começa em 1
+      fraseIncomodam += "incomodam, "; // a cada repetição, concatena mais uma frase do texto
+
+      div_mensagem.innerHTML += `
+        1 elefante incomoda muita gente <br>
+        ${contador} elefantes <b style="color: blue">${fraseIncomodam}</b> muito mais <br>
+      `;
+    }
+  }
+
+  function atazanar_v2() {
+    div_mensagem.innerHTML = ""; // limpa a div
+
+    var quantidadeElefantes = Number(input_quantidade.value);
+    var fraseIncomodam = "incomodam, "; // inicia variável auxiliar para texto dinâmico
+    var contador = 2; // contador já começa em 2, então conta depois
+
+    while (contador <= quantidadeElefantes) {
+      fraseIncomodam += "incomodam, "; // a cada repetição, concatena mais uma frase do texto
+
+      div_mensagem.innerHTML += `
+        1 elefante incomoda muita gente <br>
+        ${contador} elefantes <b style="color: green">${fraseIncomodam}</b> muito mais <br>
+      `;
+      contador += 1; // atualiza o contador após exibir a mensagem
+    }
+  }
+
+  function atazanar_v3() {
+    var quantidadeElefantes = Number(input_quantidade.value);
+    var fraseFixa = "1 elefante incomoda muita gente <br>"; // variável com frase fixa que será repetida
+    var fraseIncomodam = "incomodam, "; // inicia variável auxiliar para texto dinâmico
+    var textoFinal = ""; // começa vazio, será montado dinamicamente nas repetições
+    var contador = 2; // começa a contar a partir do segundo elefante
+    
+    while (contador <= quantidadeElefantes) {
+      fraseIncomodam += "incomodam, "; // a cada repetição, concatena mais uma frase do texto
+
+      // atualiza o texto final em uma variável
+      textoFinal += `
+        ${fraseFixa}
+        ${contador} elefantes <b style="color: orange">${fraseIncomodam}</b> muito mais <br>
+      `;
+      contador += 1; // atualiza o contador após exibir a mensagem
+    }
+
+    div_mensagem.innerHTML = textoFinal; // acessa o HTML apenas 1x para renderizar o texto completo
+  }
+</script>

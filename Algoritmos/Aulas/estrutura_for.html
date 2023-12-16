@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="contar()">Contar Até 15</button>
+    <div id="div_numeros"></div>
+</body>
+</html>
+<script>
+    function contar() {
+        for (var i = 1;   i <= 15;   i++) {
+            div_numeros.innerHTML += i + "<br>";
+        }
+        div_numeros.innerHTML += "<br><br>O contador está em: " + i;
+    }
+
+    /*
+        o "for" também representa uma estrutura de repetição, assim como o "while";
+
+        a principal diferença é que o "for" é mais adequado para situações em que sabemos exatamente quantas vezes uma tarefa precisa ser executada (vou repetir 5 vezes);
+        o "while" é mais adequado para situações em que não sabemos exatamente quantas vezes a tarefa precisa ser executada e depende de uma condição específica para pausar (vou repetir até chover canivete);
+
+        a estrutura de repetição "for" é composta por 3 partes: 
+        - um comando que será executado antes de entrar na estrutura de repetição (normalmente usado para definir/iniciar o contador);
+        - a condição de repetição, que será testada a cada repetição do loop, para ver se deve executar ou não o bloco de código;
+        - um comando que será executado após o bloco de código definido, antes de realizar novamente o teste da condição para repetir o loop (normalmente usado para atualizar o contador);
+        
+        for ( comando antes de iniciar o loop;  condição de repetição;  comando na última linha virtual do for ) { ... }
+
+        exemplo de execução acima: 
+
+            for (var i = 1; i <= 15; i++) { 
+                div_mensagem.innerHTML += `Contando... ${i} <br>`;
+            }   
+
+
+        representa a mesma coisa que: 
+
+            var i = 1;
+            while (i <= 15) { 
+                div_mensagem.innerHTML += `Contando... ${i} <br>` 
+                i++; 
+            }
+
+        em termos de desempenho, não há uma diferença significativa entre o for e o while, pois ambos executam a mesma tarefa;
+        a escolha entre um e outro depende da situação específica em que estão sendo utilizados e do programador
+
+    */
+
+</script>

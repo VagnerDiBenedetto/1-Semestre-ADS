@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aula 05</title>
+</head>
+<body>
+    Nota 1: <input id="input_n1" /> <br />
+    Nota 2: <input id="input_n2" /> <br />
+    <button onclick="avaliar()">Avaliar</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+
+    /*
+        "else" significa literalmente "senão" em português, uma palavra que normalmente indica alguma condição.
+        Nós a utilizamos no nosso dia-a-dia em situações que temos duas condições, sendo normalmente associada à segunda condição, como: 
+            - "se eu tiver dinheiro, vou ao shopping, SENÃO vou à praça";
+            - "se estiver frio, vou usar tênis, SENÃO vou usar sandália;
+            - "se minha mãe deixar, vou brincar, SENÃO vou estudar";
+        Como podemos analisar, o "SE" da condição está atrelado à tomada da primeira decisão.
+        E o "SENÃO", está atrelado a outra tomada de decisão, normalmente contrária à condição do "SE".
+
+
+        Composição da estrutura de decisão "if else":
+            if (condicao) { 
+                ...comandos primeiro cenário...   
+            } else {   
+                ...comandos segundo cenário...   
+            }
+
+            - if: palavra-chave que indica a definição de uma estrutura de decisão;
+            - (condicao): validação que será realizada, onde:
+                -- caso a condição seja VERDADEIRA, executará o bloco de comandos "IF", ignorando o bloco "ELSE" 
+                -- caso a condição seja FALSA, ignorará o bloco "IF" e executará somente o bloco de comandos do "ELSE";
+            - {}: as chaves indicam onde nosso bloco de instruções começa e termina, delimitando o seu conteúdo;
+            - else: palavra-chave que indica a continuação de uma estrutura de decisão, representando o cenário contrário do "IF";
+                -- não existe condição para o ELSE, afinal, está implícito que ele é o contrário do IF
+    
+        Exemplos de uso: 
+            - Estrutura de decisão simples: 
+                if (1 > 0) {
+                    alert("Entrei no if!")
+                } 
+
+            - Estrutura de decisão composta: 
+                if (0 > 1) {
+                    alert("O if será ignorado");
+                } else {
+                    alert("Entrei no else!");
+                }
+
+            - Estrutura de decisão composta com Aninhamento (precisa passar na 1ª validação para fazer a 2ª): 
+                if (1 > 0) {
+                    alert("Entrei no primeiro if!")
+
+                    if (0 > 1) {
+                        alert("O segundo if será ignorado");
+                    } else {
+                        alert("Entrei no segundo else!")
+                    }
+                } else {
+                    alert("O primeiro else será ignorado");
+                }
+
+            - Estrutura de decisão composta com Aninhamento (precisa passar na 1ª validação para fazer a 2ª): 
+                if (0 > 1) {
+                    alert("O primeiro if será ignorado");
+                } else {
+                    alert("Entrei no primeiro else!")
+
+                    if (1 > 0) {
+                        alert("Entrei no segundo if!")
+                    } else {
+                        alert("O segundo else será ignorado");
+                    }
+                }
+    */
+
+    function avaliar() {
+        // Obtém os valores das notas dos campos de entrada e calcula a média
+        var n1 = Number(input_n1.value);
+        var n2 = Number(input_n2.value);
+        var media = (n1 + n2) / 2;
+
+        // Exibe a mensagem da média antes da estrutura de decisão
+        div_mensagem.innerHTML = `1. A sua média é de: ${media}`;
+
+        // Início da estrutura de decisão com "if" e "else" (repare nas chaves de abertura e fechamento)
+        if (media > 6) { // Se a média for maior que 6, exibe "aprovado"
+            div_mensagem.innerHTML += "<br>2. Você foi aprovado!";
+        } else { // Caso a média seja menor ou igual a 6, exibe uma mensagem e continua as validações
+            div_mensagem.innerHTML += "<br>2. A média não é maior que 6";
+
+            if (media == 6) { // Se a média for exatamente igual a 6
+                div_mensagem.innerHTML += "<br>3. Você está exatamente na média!";
+            } else { // Se a média for menor que 6
+                div_mensagem.innerHTML += "<br>3. Você foi reprovado!";
+            }
+        }
+    }
+</script>

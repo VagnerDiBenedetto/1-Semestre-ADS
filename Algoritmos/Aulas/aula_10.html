@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    Nome: <input type="text" id="input_nome">
+    Média: <input type="text" id="input_media">
+    <button onclick="analisar()">Analisar</button>
+    <div id="div_mensagem"></div>
+
+</body>
+</html>
+
+<script>
+    function analisar() {
+        var nome = input_nome.value;
+        var media = Number(input_media.value);
+    
+        div_mensagem.innerHTML = ""; // limpa a div ao iniciar a função
+
+        if (
+            media >= 0 && 
+            media <= 10 && 
+            (nome == "Julia" || nome == "Eduardo")
+        ) {
+            div_mensagem.innerHTML = `Olá, ${nome}! Sua média é: ${media}`;
+        } 
+
+        /* 
+            valida se a média está entre 0 e 10 e se o nome é "Julia" ou "Eduardo" (tem que ser um dos dois, obrigatoriamente)
+               
+            primeiro, validamos se o nome é "Julia" ou "Eduardo", por causa da priorização dos parênteses (como uma equação aritmética)
+            na sequência, validamos se o resultado do teste do nome é verdadeiro, juntamente aos testes da média (>=0 e <=10)
+
+            caso a média esteja entre 0 e 10 e o nome seja "Julia" ou "Eduardo", exibe a mensagem de aprovação
+        */
+    }
+</script>

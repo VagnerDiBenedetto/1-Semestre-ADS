@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Filme: <input type="text" id="input_filme">
+    <button onclick="adicionar()">Adicionar Filme</button>
+    <div id="div_filmes"></div>
+</body>
+</html>
+
+<script>
+    var listaFilmes = [];
+
+    function adicionar () {
+        var filme = input_filme.value; // captura o filme digitado na input
+        
+        listaFilmes.push( filme ); // adiciona o filme digitado na lista
+
+        var filmeFavorito = listaFilmes[0]; // o filme favorito é o primeiro filme cadastrado, no índice [0]
+
+        div_filmes.innerHTML = `Seu filme favorito: ${ filmeFavorito }`;
+        
+        if (listaFilmes.length < 3) { // valida se a lista possui menos de 3 itens
+            div_filmes.innerHTML += `<br>Seu 3º filme favorito: Ainda não existe`;
+        } else { // caso tenha 3 ou mais itens
+            var terceiroFilme = listaFilmes[2]; // acessa o índice [2] da lista para obter o terceiro filme
+            div_filmes.innerHTML += `<br>Seu 3º filme favorito: ${terceiroFilme}`;
+        }
+
+        // obtém o total de filmes cadastrados ao pegar a quantidade de itens da lista com ".length"
+        div_filmes.innerHTML += `<br>Total de filmes cadastrados: ${listaFilmes.length}`
+    }
+    
+    /*
+        ao invés de "listaFilmes.length < 3", também podemos validar se:
+        
+            if (listaFilmes[2] == undefined) { }
+            
+        com isso, validamos se o terceiro item da lista (índice 2) é "undefined", ou seja, não existe
+        se não existir, significa que o terceiro filme ainda não foi registrado na lista
+    */
+
+</script>

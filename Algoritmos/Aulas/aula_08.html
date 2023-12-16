@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Número: <input type="text" id="input_numero">
+    <button onclick="analisar()">Analisar</button>
+    <div id="div_mensagem"></div>
+
+</body>
+</html>
+
+<script>
+    function analisar () {
+        var numero = Number(input_numero.value);
+
+        // se o número for menor que 20 "OU" maior que 30
+        if (numero < 20 || numero > 30) {
+            alert(`O número ${numero} é menor que 20 ou maior que 30`);
+        } else { // este é o cenário do (número >= 20 && numero <= 30)
+            div_mensagem.innerHTML = `O número ${numero} está entre 20 e 30`;
+        }
+    }
+</script>

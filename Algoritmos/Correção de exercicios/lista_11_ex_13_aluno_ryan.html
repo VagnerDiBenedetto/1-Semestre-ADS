@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 13</title>
+</head>
+<body>
+    Indique o resultado<select name="combo" id="select_combo">
+        <option value="vitoria">Vitória</option>
+        <option value="empate">Empate</option>
+        <option value="derrota">Derrota</option>
+    </select>
+    <button onclick="registrar()">Registrar jogo</button><br>
+    <div id="div_jogo"></div><br>
+    Indique qual jogo deseja saber o resultado <input type="text" id="input_jogo" onkeyup="pesquisa()">
+
+</body>
+</html>
+
+<script>
+    var listaJogo = [];
+    var qtdDerrota = 0;
+    var qtdVitoria = 0;
+    var qtdEmpate = 0;
+    
+    function registrar() {
+        var combo = select_combo.value;
+        listaJogo.push(combo);
+        if (combo == "vitoria") {
+            qtdVitoria++;
+        } else if (combo == "empate") {
+            qtdEmpate++;
+        } else {
+            qtdDerrota++;
+        }
+        var pontosVitoria = qtdVitoria * 3;
+        var pontosEmpate = qtdEmpate;
+        var pontos = pontosEmpate + pontosVitoria;
+        var aproveitamento = (pontos / (listaJogo.length * 3)) * 100;
+        div_jogo.innerHTML = `O time teve: ${qtdVitoria} vitórias, ${qtdEmpate} empates, ${qtdDerrota} derrotas<br>Pontuação total: ${pontos} pontos Aproveitamento: ${aproveitamento}% `;
+    }
+
+    function pesquisa() {
+        var jogo = Number(input_jogo.value);
+        var tamanhoLista = listaJogo.length;
+        //div_jogo.innerHTML = "";
+
+        if (jogo > tamanhoLista) {
+            div_jogo.innerHTML = `Não foi cadastrado um ${jogo}º jogo.`;
+        } else {
+                var comboAtual = listaJogo[jogo -1];
+                if (comboAtual == "vitoria") {
+                    div_jogo.innerHTML = `No ${jogo}º jogo, o time Ganhou.`;
+                } else if (comboAtual == "empate") {
+                    div_jogo.innerHTML = `No ${jogo}º jogo, o time Empatou.`; 
+                } else {
+                    div_jogo.innerHTML = `No ${jogo}º jogo, o time Perdeu.`; 
+                }
+        }
+    }
+    
+</script>

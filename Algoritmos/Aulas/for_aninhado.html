@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="contar()">Contar</button>
+    <div id="div_mensagem"></div>
+  </body>
+</html>
+
+<script>
+  function contar() {
+    var soma = 0; // variável para acumular a contagem
+
+    // for EXTERNO (DE FORA) - a cada repetição, valida se o contador ainda é menor ou igual a 5
+    for (var contador = 1; contador <= 5; contador++) {
+
+      // for INTERNO (DE DENTRO) - a cada repetição, valida se o contador ainda é menor ou igual a 3
+      for (var contadorInterno = 1; contadorInterno <= 3; contadorInterno++) {
+        soma++;
+        div_mensagem.innerHTML += `Contando... ${soma} <br> `;
+      }
+
+      div_mensagem.innerHTML += `<br><br>`;
+    }
+  }
+
+  /*
+    o for EXTERNO é o for que se inicia na linha 20 e vai até a linha 29;
+    o for INTERNO é o for que se inicia na linha 23 e vai até a linha 26 (está dentro do EXTERNO);
+
+    acima, o INTERNO  é executado a cada repetição do EXTERNO, pois está dentro dele, 
+    ou seja, se o EXTERNO é executado 5x, o INTERNO será executado 5x
+    e como o INTERNO possui 3 repetições, podemos dizer que no total, teremos 15 repetições (5 * 3);
+    
+   em resumo, o for EXTERNO repetirá 5x, aplicando a repetição INTERNA de 3x, totalizando 15 repetições;
+
+    a variável 'soma' nos auxilia a acompanhar o funcionamento do programa
+  */
+  
+  
+  /*    
+        a estrutura while abaixo reproduz a mesma funcionalidade que o for acima:
+
+        var contador = 1;
+        while (contador <= 5) { // repete 5x o bloco
+
+            var contadorInterno = 1;
+            while (contadorInterno <= 3) { 
+                soma++;
+                div_mensagem.innerHTML += `Contando... ${soma} <br> `;
+                contadorInterno++; 
+            }
+
+            div_mensagem.innerHTML += `<br><br> `;
+            contador++; // incrementa o contador do bloco
+        }
+    */
+</script>

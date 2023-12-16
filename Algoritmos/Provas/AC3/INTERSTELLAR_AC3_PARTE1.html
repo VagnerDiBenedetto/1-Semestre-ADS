@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            width: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Interstellar</h1>
+    Nome do astronauta: <input type="text" id="input_nome"> <br>
+    Quantidade de dias: <input type="text" id="input_dias"> <br>
+    Quantidade de horas: <input type="text" id="input_horas"> <br>
+    Quantidade de minutos: <input type="text" id="input_minutos"> <br>
+    <button onclick="registrar()">Registrar Viagem</button>
+    <button onclick="relatorio()">Relatório de Viagens</button>
+    <div id="div_viagens"></div>
+</body>
+</html>
+
+<script>
+    var listaNomes = [];
+    var listaTempos = [];
+
+    function registrar() {
+        var nome = input_nome.value;
+        var dias = Number(input_dias.value);
+        var horas = Number(input_horas.value);
+        var minutos = Number(input_minutos.value);
+
+        if (dias > 0 || horas > 0 || minutos > 0) {
+            // var tempoViagemBaseAnual = ((dias / 365) + (horas / 24 / 365) +  (minutos / 60 / 24 / 365));
+            var tempoViagemBaseMinutos = ((dias * 1440) + (horas * 60) + minutos) / 525600;
+            var tempoTerra = tempoViagemBaseMinutos  * 49;
+            
+            listaTempos.push(tempoTerra);
+            listaNomes.push(nome);
+        } else {
+            alert("Informe um tempo de viagem válido!")
+        }
+    }
+
+    function relatorio () {
+        var texto = `<br>Foram registradas <b>${listaTempos.length}</b> viagens, detalhadas a seguir:`;
+        for (var i = 0; i < listaTempos.length; i++) {
+            var tempoAtual = listaTempos[i];
+            var imagem = "";
+            
+            if (tempoAtual < 13) {
+                imagem = "bart1.png";
+            } else if (tempoAtual <= 30) {
+                imagem = "bart2.png";
+            } else if (tempoAtual <= 65) {
+                imagem = "bart3.png";
+            } else if (tempoAtual <= 100) {
+                imagem = "bart4.png";
+            } else {
+                imagem = "bart5.png";
+            }
+
+            texto += `<br><br>
+                Viagem ${i + 1}: <br>
+                Astronauta ${listaNomes[i]} ficou fora por pelo menos ${listaTempos[i]} anos no tempo da Terra. <br>
+                A criança que nasceu quando ele saiu provavelmente está assim: <br>
+                <img src="${imagem}" />
+            `;
+        }
+        div_viagens.innerHTML = texto;
+    }
+
+
+</script>

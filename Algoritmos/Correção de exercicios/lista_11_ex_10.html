@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    Linha: <input type="text" id="input_linha" />
+    <button onclick="gravar()">Gravar busão</button> <br />
+    Pesquisar por linha: <input type="text" id="input_pesquisa" />
+    <button onclick="pesquisar()">Pesquisar</button>
+    <div id="div_mensagem"></div>
+  </body>
+</html>
+
+<script>
+  var listaLinhas = [];
+
+  function gravar() {
+    var linha = input_linha.value;
+    listaLinhas.push(linha);
+
+    div_mensagem.innerHTML = "";
+
+    for (var i = listaLinhas.length - 1; i >= 0; i--) {
+      var linhaAtual = listaLinhas[i]; // captura o conteúdo do índice [ i ] da lista
+      div_mensagem.innerHTML += `- ${linhaAtual}<br>`;
+    }
+    /* ao percorrer do último índice até o primeiro, estamos "invertendo" a ordem de exibição
+        
+          o for acima, começa com o contador no último índice da lista (listaLinhas.length - 1)
+          enquanto o contador for maior que 0, repete a estrutura (i >= 0)
+          ao final de cada repetição, DECREMENTA o contador (i--) até chegar em "-1", onde para as repetições 
+        */
+  }
+
+  function pesquisar() {
+    var pesquisa = input_pesquisa.value;
+
+    // valida se a pesquisa do usuário não existe na lista - ".indexOf()" retorna "-1" caso NÃO encontre a informação na lista
+    if (listaLinhas.indexOf(pesquisa) < 0) { 
+
+      div_mensagem.innerHTML = "Você nunca pegou essa linha";
+
+    } else { // caso falhe no if, significa que a informação pesquisada possui um índice válido em alguma posição da lista
+
+      var listaIndicesEncontrados = []; // cria uma lista auxiliar para armazenar os índices que encontrar
+
+      for (var i = 0; i < listaLinhas.length; i++) { // percorre a lista, do índice 0 até o último índice válido (1 antes do "comprimento" da lista)
+        var linhaAtual = listaLinhas[i]; // captura o conteúdo do índice [ i ] da lista
+
+        if (pesquisa == linhaAtual) { // caso a linha atual que está no índice [i] seja igual a pesquisa do usuário
+            listaIndicesEncontrados.push(i + 1); // adiciona o índice (i) da linha encontrada no vetor auxiliar
+            // incrementa com +1 para exibir o número correto, pois para o usuário, o primeiro 
+        }
+      }
+      var indicesEncontrados = listaIndicesEncontrados.length; // obtém a quantidade de indices encontrados na pesquisa
+
+      div_mensagem.innerHTML = `Você já pegou essa linha ${indicesEncontrados} vez(es), nessa ordem: ${listaIndicesEncontrados}`;
+    
+    }
+  }
+</script>

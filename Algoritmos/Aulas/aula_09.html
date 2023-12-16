@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    Login: <input type="text" id="input_login"> <br>
+    Senha: <input type="text" id="input_senha"> <br>
+    Filme que vai assistir: <input type="text" id="input_filme"> <br>
+    <button onclick="analisar()">Vou ver o filme?</button>    
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    function analisar() {
+        var login = input_login.value;
+        var senha = input_senha.value;
+        var filme = input_filme.value;
+
+        // se o login for diferente de "usuario1" ou se a senha for diferente de "123", o login será inválido 
+        if (login != "usuario1" || senha != "123") {
+            div_mensagem.innerHTML = `Login inválido! Faça o login para assistir ao filme ${filme}`;
+        } else { // este é o cenário do (login == "usuario1" && senha == "123")
+            div_mensagem.innerHTML = `Bem-vind@, ${login}! Você pode assistir ao filme ${filme}`;
+        }
+
+
+/*        
+        validação com E
+
+        if (login == "usuario1" && senha == "123") {
+            div_mensagem.innerHTML = `Bem-vind@, ${login}! Você pode assistir ao filme ${filme}`;
+        } else {   // este é o cenário do (login != "usuario1" || senha != "123")
+            div_mensagem.innerHTML = `Login inválido! Faça o login para assistir ao filme ${filme}`;
+        }
+
+*/
+    }
+</script>

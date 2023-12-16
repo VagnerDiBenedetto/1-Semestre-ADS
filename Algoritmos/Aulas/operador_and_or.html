@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Número: <input type="text" id="input_numero">
+    <button onclick="validar()">Validar</button>
+</body>
+</html>
+
+<script>
+    function validar() {
+        var numero = Number(input_numero.value);
+        
+        // não precisa priorizar, pois o "OU" fica entre o "resultado da primeira validação" OU "numero == 75"
+        if (numero >= 0 && numero <= 10 || numero == 75) {
+            alert("O número está entre 0 e 10 ou é exatamente 75")
+        }
+        
+        // precisa priorizar com parênteses, pois o "OU" fica entre "numero == 75" OU "numero >= 0" e no final, o && vai juntar com o resultado da primeira validação
+        // if (numero == 75  || (numero >= 0 && numero <= 10)) {
+        //     alert("O número está entre 0 e 10 ou é exatamente 75")
+        // }
+    }
+
+    /*
+        EXEMPLO DE ORDENAÇÃO DOS CÁLCULOS: 
+            var calculo =  1 + 2 * 3 + 4 / 5 
+            var calculo =  1 + (2 * 3) + (4 / 5) 
+            var calculo =  1 + (6) + (0.8) 
+            var calculo =  7.8 
+    */
+
+    /*
+        EXEMPLO DE ORDENAÇÃO NAS VALIDAÇÕES: 
+        
+        VALIDAÇÃO 1: if (numero >= 0 && numero <= 10 || numero == 75) { ... }
+            var numero = 5
+                if (numero >= 0 && numero <= 10 || numero == 75) { ... }
+                if (true && true || numero == 75) { ... }
+                if (true || numero == 75) { ... }
+                if (true || false) { ... }
+                if (true) { EXECUTA O BLOCO DE CÓDIGO }
+                
+            var numero = 75
+                if (numero >= 0 && numero <= 10 || numero == 75) { ... }
+                if (true && false || numero == 75) { ... }
+                if (false || numero == 75) { ... }
+                if (false || true) { ... }
+                if (true) { EXECUTA O BLOCO DE CÓDIGO }
+                
+            var numero = 15
+                if (numero >= 0 && numero <= 10 || numero == 75) { ... }
+                if (true && false || numero == 75) { ... }
+                if (false || numero == 75) { ... }
+                if (false || false) { ... }
+                if (false) { NÃO EXECUTA O BLOCO DE CÓDIGO } 
+            
+
+        VALIDAÇÃO 2: if (numero == 75 || numero >= 0 && numero <= 10) { ... }
+            var numero = 5
+                if (numero == 75 || numero >= 0 && numero <= 10) { ... }
+                if (false || true && numero <= 10) { ... }
+                if (true && numero <= 10) { ... }
+                if (true && true) { ... }
+                if (true) { EXECUTA O BLOCO DE CÓDIGO }
+
+            var numero = 75
+                if (numero == 75 || numero >= 0 && numero <= 10) { ... }
+                if (true || true && numero <= 10) { ... }
+                if (true && numero <= 10) { ... }
+                if (true && false) { ... }
+                if (false) { NÃO EXECUTA O BLOCO DE CÓDIGO }  
+                    -- este cenário está bugado, pois deveria executar mas não executa
+
+        VALIDAÇÃO 3: if (numero == 75 || (numero >= 0 && numero <= 10)) { ... }
+            var numero = 75
+                if (numero == 75 || (numero >= 0 && numero <= 10)) { ... }
+                if (numero == 75 || (true && false)) { ... }
+                if (numero == 75 || (false)) { ... }
+                if (true || false) { ... }
+                if (true) { ... }
+                    -- este cenário está correto, pois priorizamos o outro cenário antes de validar com "||"
+    */        
+
+</script>
+

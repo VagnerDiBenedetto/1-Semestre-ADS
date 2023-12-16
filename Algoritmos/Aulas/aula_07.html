@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Numero: <input id="input_numero">
+    <button onclick="analisar()">Analisar</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    function analisar() { 
+        var numero = Number(input_numero.value);
+
+        if (numero >= 20 && numero <= 30) {
+            div_mensagem.innerHTML = `O número ${numero} está entre 20 e 30`;
+        } else {
+            div_mensagem.innerHTML = `O número ${numero} é menor que 20 ou maior que 30`;
+        }
+
+        /*
+            o operador lógico && ("and" / "e") serve para realizar uma operação de "conjunção", 
+            ou seja, verificar se duas ou mais condições são verdadeiras ao mesmo tempo 
+
+            ao utilizar esse operador em uma estrutura de decisão "if", 
+            o bloco de código será executado somente caso TODAS AS CONDIÇÕES CONJUNTAS SEJAM VERDADEIRAS!
+
+            normalmente, utilizamos esse operador lógico em situações cotidianas, como: 
+                "se estiver calor e ensolarado, vou ao parque!" 
+                    - ou seja, se estiver frio ou nublado ou chovendo, não iria ao parque
+                "se tiver login e senha, vou entrar no facebook" 
+                    - ou seja, se tiver somente o login não entra, assim como não entra só com a senha
+
+            o exemplo de código abaixo representa o mesmo cenário do código acima, porém realizando 2 validações separadas, 
+            com mensagens de erro para cada saída inválida (menor que 20 ou maior que 30)
+
+                if (numero >= 20) {
+                    if (numero <= 30) {
+                        div_mensagem.innerHTML = `O número ${numero} está entre 20 e 30`;
+                    } else {
+                        div_mensagem.innerHTML = `O número ${numero} é menor que 20 ou maior que 30`;   
+                    }
+                } else {
+                    div_mensagem.innerHTML = `O número ${numero} é menor que 20 ou maior que 30`;
+                }
+
+            o operador lógico && serve para diminuir as linhas de código e facilitar a leitura/entendimento do código
+        */
+
+    }
+</script>

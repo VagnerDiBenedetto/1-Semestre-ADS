@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 01</title>
+</head>
+<body>
+    <!-- 
+        Este é um comentário em HTML!
+        Tudo que estiver comentado no código, será ignorado pelo navegador.
+    -->
+
+    <h1>Olá mundo</h1>
+    Nome: <input id="input_nome"> <br>
+    Idade: <input id="input_idade"> <br>
+    <button onclick="cumprimentar()">Cumprimente-me</button>
+
+</body>
+</html>
+
+<script>
+    // Este é um comentário em JS! Utilize /* */ para comentários com mais de uma linha!
+
+    /*
+        alert("Olá, mundo!");
+        
+        Todo o conteúdo que estiver fora de uma função (como o comando de alerta acima), 
+        será executado assim que a página terminar de carregar
+    */
+
+    /*
+        Composição de uma função:
+
+        function nome_da_funcao() { ...conteúdo... }
+
+        - function: a palavra reservada que indica ao JS que a seguir será definida uma função;
+        - nome_da_funcao(): é o identificador da função, usado para invocar/executar a funcionalidade;
+        - {}: as chaves indicam onde nossa função começa e termina, delimitando o seu conteúdo;
+    */
+    
+    function cumprimentar() {
+        alert("Olá, " + input_nome.value + "! Você tem " + input_idade.value + " anos de idade."); 
+    } 
+    // essa "soma" ou "junção" de textos é chamada de "concatenação"
+    
+</script>

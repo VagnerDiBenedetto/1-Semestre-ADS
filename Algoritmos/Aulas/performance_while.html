@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="contarViaJS()">Contar até 10.000 via JS (performático)</button>
+    <button onclick="contarViaHTML()">Contar até 5.000 acessando HTML (mais renderizações)</button>
+    <div id="div_mensagem"></div>
+  </body>
+</html>
+
+<script>
+
+  function contarViaJS() {
+    div_mensagem.innerHTML = ""; // limpa div
+
+    var texto = ""; // cria variável auxiliar para armazenar o conteúdo via JS
+
+    var contador = 0; // variável de controle para a estrutura de repetição
+    while (contador <= 100000) {
+      texto += `${contador} <br>`; // armazena na variável o texto a ser renderizado
+      contador += 1; // atualiza a variável de controle
+    }
+
+    div_mensagem.innerHTML = texto; // acessa o HTML apenas uma vez, sobrescrevendo o conteúdo
+  }
+
+
+  function contarViaHTML() {
+    div_mensagem.innerHTML = ""; // limpa div
+
+    var contador = 0; // variável de controle para a estrutura de repetição
+    while (contador <= 5000) {
+      div_mensagem.innerHTML += `${contador} <br>`; // acessa o HTML para alterar o conteúdo a cada repetição
+      contador += 1; // atualiza a variável de controle
+    }
+  }
+</script>

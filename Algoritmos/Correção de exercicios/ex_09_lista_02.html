@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Nome: <input id="input_nome" type="text"> <br>
+    Nota Continuada: <input id="input_continuada" type="text"> <br>
+    Nota Semestral: <input id="input_semestral" type="text"> <br>
+    <button onclick="ver_aprovacao()">Ver Aprovação</button>
+</body>
+</html>
+
+<script>
+    function ver_aprovacao() {
+        var nome = input_nome.value;
+        var continuada = input_continuada.value;
+        var semestral = input_semestral.value;
+        var peso_continuada = continuada * 40 / 100; // 0.40
+        var peso_semestral = semestral * 60 / 100;  // 0.60
+        var media = peso_continuada + peso_semestral;
+
+        alert("A média de " + nome + " será de " + media);
+    }
+</script>

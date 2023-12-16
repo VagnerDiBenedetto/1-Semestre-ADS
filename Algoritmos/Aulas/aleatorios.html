@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Gerar números fixos</h2>
+    <button onclick="gerar()">Gerar Aleatório de 0 a 1</button>
+    <button onclick="gerar_15()">Gerar Aleatório de 0 até 15</button>
+    <button onclick="gerar_5_15()">Gerar Aleatório de 5 até 15</button>
+    
+    <hr>
+    
+    <h2>Gerar números com base nas inputs</h2>
+    Min: <input type="text" id="input_min"> <br>
+    Max: <input type="text" id="input_max"> <br>
+    <button onclick="gerar_min_max()">Gerar aleatório entre Min e Max ("numero.toFixed(0)")</button>
+    <button onclick="gerar_min_max_parse()">Gerar aleatório entre Min e Max ("parseInt(numero)")</button>
+    
+    <hr> 
+    
+    <div style="font-size: 150%" id="div_mensagem"></div>
+
+</body>
+</html>
+<script>
+    function gerar() {
+        // "Math.random()" gera um número de 0 a 0.9999
+        var aleatorio = Math.random();
+        div_mensagem.innerHTML = `Aleatório: <b>${aleatorio}</b>`;
+    }
+
+
+
+    function gerar_15() {
+        var aleatorio = Math.random() * 15; // gera um número de 0 a 14.999
+        // primeiro gera um número de 0 a 0.9999, depois multiplica por 15 para aumentar o limite até 14.9999 
+        // ao realizar "0 * 15" o número gerado continua "0", mantendo o mínimo de 0 
+        // assim como "0.999 * 15" se torna "14.999", aumentando o limite máximo até 14.999 (mantendo o mínimo de 0) 
+
+        div_mensagem.innerHTML = `Aleatório: <b>${aleatorio}</b>`;
+    }
+
+
+
+    function gerar_5_15() {
+        var min = 5; // limite mínimo
+        var max = 15; // limite máximo
+
+        var intervalo = max - min; // este é o intervalo de números existentes entre 5 e 15 -> tem 10 números no total
+        
+        var aleatorio = min + Math.random() * intervalo; 
+        /*
+            o comando acima, gera um número entre o 5 e 14.999 (10 números de intervalo, sendo o mínimo 5 e máximo 15):
+                - primeiro gera um número aleatório de "0" até "0.999"
+                - depois, multiplica o número gerado por "10" para o limite chegar até "9.999" mas mantendo o mínimo de "0"
+                - por último, soma o número multiplicado com "5" para tornar um número de "5" a "14.999" 
+            ou seja, número é gerado de "0 a 10", depois somamos 5, deslocando o intervalo para "5 a 15", preservando os limites
+        */
+
+        div_mensagem.innerHTML = `Aleatório: <b>${aleatorio}</b>`;
+    }
+
+
+
+    function gerar_min_max () {
+        var max = Number(input_max.value); // limite máximo
+        var min = Number(input_min.value); // limite mínimo
+        var intervalo = max - min; // este é o intervalo de números entre min e max -> se o min é 10 e o max é 25, temos "15" números de intervalo
+        
+        // gera um número entre 0 e o intervalo definido, depois soma com o mínimo para deslocar o número gerado de "min" até "max"
+        var aleatorio = min + Math.random() * intervalo; 
+        // o funcionamento desse min e max é igual a função "gerar_5_15()"
+
+        div_mensagem.innerHTML = `Aleatório: <b>${aleatorio}</b><br>`; // .toFixed(X) arredonda o número para obter X casas decimais, nesse caso, arredonda para um número inteiro
+        div_mensagem.innerHTML += `Inteiro: <b>${aleatorio.toFixed(0)}</b><br>`; // .toFixed(X) arredonda o número para obter X casas decimais, nesse caso, arredonda para um número inteiro
+        /*
+            o ".toFixed(X)" serve para arredondar a quantidade de casas decimais para X, onde caso seja 0, transforma em um número inteiro
+            por possuir arredondamento, o ".toFixed()" impacta nos números das extremidades a serem gerados aleatoriamente:
+                - se cair em "0.49" OU MENOS, arredonda para 0, porém de "0.5" até "1.49" arredonda para 1, tendo maior probabilidade de arredondar para 1 do que para 0;
+                - se cair em "49.5" OU MAIS, arredonda para 50, porém de "48.5" até "49.49", arredonda para 49, tendo maior probabilidade de arredondar para 49 do que para 50;
+            portanto, o ".toFixed()" funciona, mas possui certos impactos na probabilidade de gerar algum número
+        */
+        div_mensagem.innerHTML += `".toFixed()" arredonda, então impacta a probabilidade das extremidades!`; 
+    }
+
+
+
+    function gerar_min_max_parse () {
+        var max = Number(input_max.value); // limite máximo
+        var min = Number(input_min.value); // limite mínimo
+        var intervalo = max - min; // este é o intervalo de números entre min e max -> se o min é 2 e o max é 10, temos "8" números de intervalo
+
+        var aleatorio =  min + parseInt(Math.random() * (intervalo + 1)); // gera um número inteiro entre o mínimo e o máximo informado
+    
+        div_mensagem.innerHTML = `Aleatório: <b>${aleatorio}</b><br>`; 
+        div_mensagem.innerHTML += `"parseInt()" deixa a probabilidade de todos os números gerados iguais, pois não arredonda!`; 
+        /*
+            "parseInt(numero)" serve para obter a PARTE INTEIRA de algum número, porém SEM ARREDONDÁ-LO;
+            desse modo, podemos garantir que todos os números possuem a mesma probabilidade de serem gerados (sem arredondamento nas extremidades, como no ".toFixed(0)");
+            mas para isso, precisamos manipular o intervalo:
+                - para gerar um número de 2 a 10, precisamos usar:  
+                    - Math.random()  ...................... => gera um número de 0 a 0.9999;
+                    - Math.random() * 8  .................. => garante que o número vá de 0 até 7.9999;
+                    - Math.random() * 8 + 2  .............. => garante que o número vá de 2 até 9.9999;
+                    - (Math.random * 8 + 2).toFixed(0)  ... => arredonda o número para inteiro, gerando de 2 até 10 (o maior é 9.9999 e arredonda);
+
+                - porém, ao utilizar o parseInt(), temos um comportamento diferente:
+                    - parseInt(Math.random() * 8 + 2) ..... => corta as casas decimais, gerando de 2 até 9 (afinal, o maior número é 9.9999);
+                
+                - pelo fato de CORTAR A PARTE DECIMAL SEM ARREDONDAR, trazendo somente a parcela inteira, nesse cenário não conseguimos atingir o número 10;
+                - portanto, precisamos gerar UM NÚMERO A MAIS NO INTERVALO, a fim de atingirmos o número 8.999 e obter a parte inteira do "8":
+                    - Math.random()  ...................... => gera um número de 0 a 0.9999;
+                    - Math.random() * (8+1)  .............. => garante que o número vá de 0 até 8.9999 (seria o intervalo "até 8" + 1);
+                    - Math.random() * (8+1) + 2  .......... => garante que o número vá de 2 até 10.9999 (seria o intervalo "até 8" + 1 somado com 2);
+                    - parseInt(Math.random * (8+1) + 2)  .. => corta as casas decimais, gerando de 2 até 10 (o maior é 10.9999 e corta as casas decimais);            
+        */
+    }
+</script>
